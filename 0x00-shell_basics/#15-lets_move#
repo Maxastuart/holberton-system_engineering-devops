@@ -1,7 +1,0 @@
-case  in
-    *)
-	    
-esac
-
-	#!bin/bash
-mv [A-Z]* /tmp/u
