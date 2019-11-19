@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# a comment explaining what is the script doing
 if [[ $# == 0 ]]
 then
     echo "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}"
