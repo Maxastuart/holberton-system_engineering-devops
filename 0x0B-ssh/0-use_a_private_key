@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# A comment explaining what the script is doing
+ssh -i ~/.ssh/holberton ubuntu@35.231.46.174
