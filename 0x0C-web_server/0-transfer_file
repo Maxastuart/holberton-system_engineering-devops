@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Uploads a file to a remote host
-if [ $# -gt 2 ]
+if [ $# -gt 3 ]
 then
 	scp -i "$4" "$1" "$3@$2":~
 else
