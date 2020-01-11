@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 # fix nginx web server
 pkill -9 nginx
-sed -i "s/ 8080 / 80 /" /etc/nginx/sites-enabled/default
-sed -i "s/:8080/:80/" /etc/nginx/sites-enabled/default
-sed -i "s/ 80 / 8080 /" /etc/nginx/sites-available/default
-sed -i "s/:80/:8080/" /etc/nginx/sites-available/default
+sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
 service nginx restart
