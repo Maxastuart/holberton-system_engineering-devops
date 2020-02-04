@@ -6,7 +6,12 @@ import requests as r
 from sys import argv
 if __name__ == "__main__":
     user = r.get('https://jsonplaceholder.typicode.com/users/{}'
-              .format(argv[1])).json()
-    tasks = r.get('https://jsonplaceholder.typicode.com/todos').json()
-
-    print("Employee {} is done with tasks({}/{}):".format(user['name'], done, total))
+                 .format(argv[1])).json()
+    tasks = r.get('https://jsonplaceholder.typicode.com/todos?userId={}'
+                  .format(argv[1])).json()
+    done = []
+    for task in tasks:
+        if task['completed'] == True:
+            done.append(task)
+    print("Employee {} is done with tasks({}/{}):"
+          .format(user['name'], len(done), len(tasks)))
