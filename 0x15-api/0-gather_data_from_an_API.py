@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-# for a given employee ID, returns information about his/her TODO list progress
-# from REST API at https://jsonplaceholder.typicode.com/
+# for a given employee ID, returns information about his/her TODO list
 
 import requests as r
 from sys import argv
@@ -16,4 +15,4 @@ if __name__ == "__main__":
     print("Employee {} is done with tasks({}/{}):"
           .format(user['name'], len(done), len(tasks)))
     for task in done:
-        print('\t' + task['title'])
+        print('\t ' + task['title'])
