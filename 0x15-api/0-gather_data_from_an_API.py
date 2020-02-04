@@ -10,9 +10,9 @@ if __name__ == "__main__":
                   .format(argv[1])).json()
     done = []
     for task in tasks:
-        if task['completed'] is True:
+        if task.get('completed') is True:
             done.append(task)
     print("Employee {} is done with tasks({}/{}):"
-          .format(user['name'], len(done), len(tasks)))
+          .format(user.get('name'), len(done), len(tasks)))
     for task in done:
-        print('\t ' + task['title'])
+        print('\t ' + task.get('title'))
