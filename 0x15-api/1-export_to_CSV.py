@@ -14,6 +14,6 @@ if __name__ == "__main__":
         file = csv.writer(f, quoting=csv.QUOTE_ALL)
         for task in tasks:
             file.writerow([argv[1],
-                           user.get('name'),
+                           user.get('username'),
                            task.get('completed'),
                            task.get('title')])
