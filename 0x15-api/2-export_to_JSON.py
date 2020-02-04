@@ -9,6 +9,10 @@ if __name__ == "__main__":
                  .format(argv[1])).json()
     tasks = r.get('https://jsonplaceholder.typicode.com/todos?userId={}'
                   .format(argv[1])).json()
-
+    data = []
+    for task in tasks:
+        data.append({'task': task.get('title'),
+                     'completed': task.get('completed'),
+                     'username': user.get('username')})
     with open('{}.json'.format(argv[1]), mode='w') as f:
-        json.dumps(argv[1] + ":", tasks)
+        json.dump({argv[1]: data}, f)
