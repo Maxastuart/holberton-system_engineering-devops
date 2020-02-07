@@ -10,7 +10,11 @@ def number_of_subscribers(subreddit):
 
     return(int): number of subreddit's subscribers, 0 if subreddit invalid
     """
-    return r.get(
-        'https://api.reddit.com/r/{}/about'.format(subreddit), headers={
-            'user-agent': 'python:v3.5.2 (by /u/maxastuart)'
-        }).json().get('data').get('subscribers')
+    try:
+        g = r.get('https://api.reddit.com/r/{}/about'.format(subreddit),
+                  headers={'user-agent': 'python:v3.5.2 (by /u/maxastuart)'}
+                  )
+        g.raise_for_status()
+        return g.json().get('data').get('subscribers')
+    except Exception as e:
+        return 0
