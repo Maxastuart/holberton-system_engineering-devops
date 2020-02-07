@@ -4,22 +4,26 @@
 import requests as r
 
 
-def recurse(subreddit, hot_list=[]):
+def recurse(subreddit, hot_list=[], last=None):
     """
     queries the Reddit API for the titles of all a subreddit's hot articles
 
     return: List of the titles, or None if none
     """
-    count = len(hot_list)
-    print(count)
     g = r.get('https://api.reddit.com/r/{}/hot'
               .format(subreddit), headers={
                   'user-agent': 'python:v3.5.2 (by /u/maxastuart)'},
-              params={'count': count, 'limit': 1})
-    if g.raise_for_status() is None:
-        t = g.json().get('data').get('children')[0].get('data').get('title')
-        print(t)
-        hot_list += t
-        return recurse(subreddit, hot_list)
+              params={'limit': 1, 'after': last})
+    if g.status_code is 200 and g.json().get('data') is not None:
+        p = g.json().get('data').get('children')
+        if len(p) > 0:
+            t = p[0].get('data').get('title')
+            if g.json().get('data').get('after'):
+                return [t] + (recurse(subreddit, hot_list,
+                                      g.json().get('data').get('after')))
+            else:
+                return []
+        else:
+            return []
     else:
         return None
